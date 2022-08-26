@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
+import { TodoModel } from '../share/todo.model';
 
 @Component({
   selector: 'app-todos',
@@ -7,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent implements OnInit {
-  newText = '';
-  todos: {
-    done: boolean;
-    text: string;
-  }[] = [];
+  todos: TodoModel[] = [];
 
   constructor() {
     this.todos = [
@@ -22,15 +19,14 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  toggleTodo(todo: { done: boolean; text: string }) {
+  toggleTodo(todo: TodoModel) {
     todo.done = !todo.done;
   }
 
-  addTodo(newText: string) {
+  addTodo(text: string) {
     this.todos.push({
       done: false,
-      text: newText,
+      text: text,
     });
-    this.newText = '';
   }
 }
